@@ -3,6 +3,20 @@ project( UnitreeCameraSDK )
 
 set(EXECUTABLE_OUTPUT_PATH ${PROJECT_SOURCE_DIR}/bins/)
 
+# Set path for OpenCV if using it
+if(UNITREE_CAMERA_USE_CUSTOM_OPENCV_DIR)
+    set(OpenCV_DIR ${UNITREE_CAMERA_OPENCV_DIR}/lib/cmake/opencv4)
+
+    # Add the manually specified path to the library path
+    file(WRITE ${CMAKE_INSTALL_PREFIX}/share/${PROJECT_NAME}/opencv.bash
+        "LD_LIBRARY_PATH=${UNITREE_CAMERA_OPENCV_DIR}/lib:$LD_LIBRARY_PATH"
+    )
+else()
+    # Add the manually specified path to the library path
+    file(WRITE ${CMAKE_INSTALL_PREFIX}/share/${PROJECT_NAME}/opencv.bash "" )
+endif()
+
+find_package(ament_cmake REQUIRED)
 find_package(OpenCV 4 REQUIRED)
 if(OpenCV_FOUND)
     include_directories(${OpenCV_INCLUDE_DIR})
@@ -65,3 +79,5 @@ install(EXPORT UnitreeCameraSDK-targets
         NAMESPACE UnitreeCameraSDK::
         DESTINATION lib/cmake/${PROJECT_NAME}
 )
+
+ament_package()
