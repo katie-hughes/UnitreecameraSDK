@@ -1,84 +1,20 @@
-Introduction
----
-Unitree Robotics is a energetic start-up company that focuses on the development, production and sales of high-performance quadruped robots. It has been interviewed by BBC and CCTV, and is one of the earliest company to publicly sell quadruped robots.
+# Enable Unitree Go1 Cameras
 
-The company has an outstanding leadership in developing robot core components, motion control, robot perception, etc.
+This package allows you to enable the Unitree Go1 cameras so that they can be streamed by standard Linux video tools. Upon powering on, the cameras to the Unitree Go1 are locked. When their SDK is launched, it passes some arguments to enable the cameras, and upon shutdown, it disables them again. 
 
-We attaches great importance to research and development, and thus independently developed the motors, reducers, controllers, and even some sensors of the quadruped robot.
+I did not want to use their CameraSDK to create a video pipeline, so I discovered that if you start their SDK to initialize a camera, then `abort()`, the camera stays unlocked and you can stream from it using commands like `ffmpeg` or ROS `usb_cam`. 
 
-1.Overview
----
-UnitreeCameraSDK 1.1.0 is a cross-platform library for unitree stereo cameras
+In order for their SDK to compile, you need to install opencv 4.1.1 locally. Then when you build the project, you need to point to the location of this local installation. The file `local_opencv.tar` contains the folder structure that you need to compile it. 
 
-The SDK allows depth and color streaming, and provides intrinsic calibration information. The library also offers pointcloud, depth image aligned to color image.
-
-2.Dependencies
----
-
-OpenCV, version: equal or lager than 4 (need gstreamer)
-
-CMake, version: 2.8 or higher
-
-[OpenGL] for point cloud gui
-
-[GLUT] for point cloud gui
-
-[X11], for point cloud gui 
-
-2.Build
----
-
+To set up:
 ```
-cd UnitreeCameraSDK;
-mkdir build && cd build;
-cmake ..; make
+git clone git@github.com:katie-hughes/UnitreecameraSDK.git
+cd UnitreeCameraSDK
+mkdir build
+cd build
+cmake ..
+make
+cd ../examples/bins
+./unlock_camera0
+./unlock_camera1
 ```
-
-3.Run Examples
----
-
-Get Camera Raw Frame:
-```
-cd UnitreeCameraSDK; 
-./bin/example_getRawFrame 
-```
-
-Get Calibration Parameters File
-```
-cd UnitreeCameraSDK;
-./bin/example_getCalibParamsFile 
-```
-
-Get Rectify Frame
-```
-cd UnitreeCameraSDK;
-./bin/example_getRectFrame
-```
-
-Get Depth Frame
-```
-cd UnitreeCameraSDK;
-./bin/example_getDepthFrame
-```
-
-Get Point Cloud:
-```
-cd UnitreeCameraSDK; 
-./bin/example_getPointCloud
-```
-
-4.send image and listen image
-sender:put image to another devices
-```
-cd UnitreeCameraSDK; 
-./bin/example_putImagetrans
-```
-
-listener:get image from another devices
-```
-cd UnitreeCameraSDK; 
-./bin/example_getimagetrans
-```
-
-
-

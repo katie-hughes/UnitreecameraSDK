@@ -6,17 +6,8 @@ set(EXECUTABLE_OUTPUT_PATH ${PROJECT_SOURCE_DIR}/bins/)
 # Set path for OpenCV if using it
 if(UNITREE_CAMERA_USE_CUSTOM_OPENCV_DIR)
     set(OpenCV_DIR ${UNITREE_CAMERA_OPENCV_DIR}/lib/cmake/opencv4)
-
-    # Add the manually specified path to the library path
-    #file(WRITE ${CMAKE_INSTALL_PREFIX}/share/${PROJECT_NAME}/opencv.bash
-    #    "LD_LIBRARY_PATH=${UNITREE_CAMERA_OPENCV_DIR}/lib:$LD_LIBRARY_PATH"
-    #)
-else()
-    # Add the manually specified path to the library path
-    #file(WRITE ${CMAKE_INSTALL_PREFIX}/share/${PROJECT_NAME}/opencv.bash "" )
 endif()
 
-find_package(ament_cmake REQUIRED)
 find_package(OpenCV 4 REQUIRED)
 if(OpenCV_FOUND)
     include_directories(${OpenCV_INCLUDE_DIR})
@@ -45,7 +36,6 @@ include_directories(${PROJECT_SOURCE_DIR}/include)
 set(SDKLIBS unitree_camera tstc_V4L2_xu_camera udev systemlog ${OpenCV_LIBS})
 
 add_subdirectory(${PROJECT_SOURCE_DIR}/examples)
-
 
 # https://stackoverflow.com/questions/34234446/cmake-is-it-possible-to-build-an-executable-from-only-static-libraries-and-no-s
 file(WRITE ${CMAKE_CURRENT_BINARY_DIR}/null.cpp "")
@@ -80,4 +70,3 @@ install(EXPORT UnitreeCameraSDK-targets
         DESTINATION lib/cmake/${PROJECT_NAME}
 )
 
-ament_package()
