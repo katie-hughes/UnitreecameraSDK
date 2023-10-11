@@ -8,12 +8,12 @@ if(UNITREE_CAMERA_USE_CUSTOM_OPENCV_DIR)
     set(OpenCV_DIR ${UNITREE_CAMERA_OPENCV_DIR}/lib/cmake/opencv4)
 
     # Add the manually specified path to the library path
-    file(WRITE ${CMAKE_INSTALL_PREFIX}/share/${PROJECT_NAME}/opencv.bash
-        "LD_LIBRARY_PATH=${UNITREE_CAMERA_OPENCV_DIR}/lib:$LD_LIBRARY_PATH"
-    )
+    #file(WRITE ${CMAKE_INSTALL_PREFIX}/share/${PROJECT_NAME}/opencv.bash
+    #    "LD_LIBRARY_PATH=${UNITREE_CAMERA_OPENCV_DIR}/lib:$LD_LIBRARY_PATH"
+    #)
 else()
     # Add the manually specified path to the library path
-    file(WRITE ${CMAKE_INSTALL_PREFIX}/share/${PROJECT_NAME}/opencv.bash "" )
+    #file(WRITE ${CMAKE_INSTALL_PREFIX}/share/${PROJECT_NAME}/opencv.bash "" )
 endif()
 
 find_package(ament_cmake REQUIRED)

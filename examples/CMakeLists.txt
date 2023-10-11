@@ -1,21 +1,33 @@
 
-add_executable(example_getRawFrame ./example_getRawFrame.cc)
-target_link_libraries(example_getRawFrame ${SDKLIBS})
+#add_executable(example_getRawFrame ./example_getRawFrame.cc)
+#target_link_libraries(example_getRawFrame ${SDKLIBS})
 
-add_executable(example_getDepthFrame ./example_getDepthFrame.cc)
-target_link_libraries(example_getDepthFrame ${SDKLIBS})
+#add_executable(example_getDepthFrame ./example_getDepthFrame.cc)
+#target_link_libraries(example_getDepthFrame ${SDKLIBS})
 
-add_executable(example_getRectFrame ./example_getRectFrame.cc)
-target_link_libraries(example_getRectFrame ${SDKLIBS})
+#add_executable(example_getRectFrame ./example_getRectFrame.cc)
+#target_link_libraries(example_getRectFrame ${SDKLIBS})
 
-add_executable(example_getCalibParamsFile ./example_getCalibParamsFile.cc)
-target_link_libraries(example_getCalibParamsFile ${SDKLIBS})
+#add_executable(example_getCalibParamsFile ./example_getCalibParamsFile.cc)
+#target_link_libraries(example_getCalibParamsFile ${SDKLIBS})
 
-add_executable(example_putImagetrans ./example_putImagetrans.cc)
-target_link_libraries(example_putImagetrans ${SDKLIBS})
+#add_executable(example_putImagetrans ./example_putImagetrans.cc)
+#target_link_libraries(example_putImagetrans ${SDKLIBS})
 
-add_executable(example_getimagetrans ./example_getimagetrans.cc)
-target_link_libraries(example_getimagetrans ${SDKLIBS})
+#add_executable(example_getimagetrans ./example_getimagetrans.cc)
+#target_link_libraries(example_getimagetrans ${SDKLIBS})
+
+add_executable(unlock_camera0 ./unlock_camera0.cc)
+target_link_libraries(unlock_camera0 ${SDKLIBS})
+
+add_executable(unlock_camera1 ./unlock_camera1.cc)
+target_link_libraries(unlock_camera1 ${SDKLIBS})
+
+add_executable(lock_camera0 ./lock_camera0.cc)
+target_link_libraries(lock_camera0 ${SDKLIBS})
+
+add_executable(lock_camera1 ./lock_camera1.cc)
+target_link_libraries(lock_camera1 ${SDKLIBS})
 
 # add_executable(example_share ./example_share.cc)
 # target_link_libraries(example_share ${SDKLIBS})
